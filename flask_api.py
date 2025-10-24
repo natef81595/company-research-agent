@@ -149,14 +149,17 @@ if __name__ == '__main__':
     if not os.environ.get('ANTHROPIC_API_KEY'):
         print("⚠️  WARNING: ANTHROPIC_API_KEY not set!")
         print("Set it with: export ANTHROPIC_API_KEY='your-key'")
-    
+
+    # Get port from environment (Railway sets this)
+    port = int(os.environ.get('PORT', 5000))
+
     # Run server
     print("🚀 Starting API server for Clay integration...")
-    print("📡 API will be available at http://localhost:5000")
+    print(f"📡 API will be available on port {port}")
     print("\nEndpoints:")
     print("  POST /research - Single company research")
     print("  POST /batch - Batch research for one company")
     print("  GET /health - Health check")
     print("\nReady to integrate with Clay! 🎉\n")
-    
-    app.run(host='0.0.0.0', port=5000, debug=False)
+
+    app.run(host='0.0.0.0', port=port, debug=False)
